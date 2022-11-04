@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
     "test": "jest",
     "test:watch": "jest --watch",
     "build": "next build",
@@ -27,6 +27,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "autoprefixer": "^10.4.13",
+    "cross-env": "^7.0.3",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.1",
     "husky": "^8.0.1",
