@@ -11,10 +11,10 @@ npm run test
 echo -e "===\n>> Pre-commit Hook: Checking branch name..."
 branchName=$(git branch | grep '*' | sed 's/* //')
 
-#if [ $branchName == 'main' ]
-#then
-#  echo -e "\n🚫 Commit directly to main branch is not allowed!\n" && exit 1
-#fi
+if [ $branchName == 'main' ]
+then
+ echo -e "\n🚫 Commit directly to main branch is not allowed!\n" && exit 1
+fi
 
 if [ $branchName == 'development' ]
 then
