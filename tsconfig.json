@@ -16,7 +16,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "Components/*": ["components/*"],
+      "Components/*": ["ui/components/*"],
       "Pages/*": ["pages/*"]
     }
   },

@@ -8,6 +8,9 @@ export default function Home() {
         <meta name="description" content="Viña México" />
         <link rel="icon" href="/favicon.png" />
       </Head>
+      <div>
+        <h1>Hello</h1>
+      </div>
     </>
   );
 }

@@ -14,4 +14,3 @@ if [ "$branch" = "development" ]; then
   echo "You can't push directly to master branch"
   exit 1
 fi
-
