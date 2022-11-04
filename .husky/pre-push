@@ -5,10 +5,10 @@ npm run build
 
 branch="$(git rev-parse --abbrev-ref HEAD)"
 
-#if [ "$branch" = "main" ]; then
-#  echo "You can't push directly to master branch"
-#  exit 1
-#fi
+if [ "$branch" = "main" ]; then
+ echo "You can't push directly to master branch"
+ exit 1
+fi
 
 if [ "$branch" = "development" ]; then
   echo "You can't push directly to master branch"
