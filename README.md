@@ -66,7 +66,7 @@ To get a local copy and run this project follow the next steps.
 ### Setup
 
 ```sh
-$ git clone https://github.com/eduym17/ISE-website
+$ git clone https://github.com/FlattWorld/vinamexico.git
 ```
 
 ```sh
