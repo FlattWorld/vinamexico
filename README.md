@@ -17,7 +17,6 @@ La Viña México. <!-- Nombre del proyecto -->
 - [ ] Testing:
   - [ ] Front End
   - [ ] Back End
-- [ ] Photovoltaic and photothermal calculators for In Situ Energía employees.
 - [ ] Multi-language support
   - [ ] Spanish
   - [ ] English
