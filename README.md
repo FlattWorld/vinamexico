@@ -1,4 +1,4 @@
-![website]() <!-- FOTO DEL SITIO -->
+![website](./public/flattworld.svg) <!-- FOTO DEL SITIO -->
 
 <!-- TECNOLOGIAS USADAS -->
 <p align=center>
@@ -17,7 +17,6 @@ La Viña México. <!-- Nombre del proyecto -->
 - [ ] Testing:
   - [ ] Front End
   - [ ] Back End
-- [ ] Photovoltaic and photothermal calculators for In Situ Energía employees.
 - [ ] Multi-language support
   - [ ] Spanish
   - [ ] English
@@ -67,7 +66,7 @@ To get a local copy and run this project follow the next steps.
 ### Setup
 
 ```sh
-$ git clone https://github.com/eduym17/ISE-website
+$ git clone https://github.com/FlattWorld/vinamexico.git
 ```
 
 ```sh
@@ -90,12 +89,6 @@ npm run dev
 
 ```sh
 npm run test
-```
-
-### View Components (Storybook)
-
-```sh
-npm run storybook
 ```
 
 <!-- ### Deployment
