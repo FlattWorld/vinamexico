@@ -1,4 +1,5 @@
 import { Poppins } from '@next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from 'next/app';
 import '../styles/globals.css';
 import { Footer, Header } from '../ui/layout';
@@ -20,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </main>
       <Footer />
+      <Analytics />
     </>
   );
 }
