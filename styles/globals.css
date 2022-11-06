@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .section {
+    @apply w-full flex items-center justify-center;
+  }
+  .container {
+    @apply w-full max-w-7xl px-4 xl:px-0 flex items-center;
+  }
+  .theme-primary {
+    @apply text-vina-blue-dark dark:bg-vina-blue-dark dark:text-vina-yellow-medium bg-vina-yellow-medium;
+  }
+  .theme-secondary {
+    @apply bg-vina-yellow-dark dark:bg-vina-blue-medium text-vina-blue-medium dark:text-vina-yellow-dark;
+  }
+}

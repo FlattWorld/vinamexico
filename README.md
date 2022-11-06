@@ -92,12 +92,6 @@ npm run dev
 npm run test
 ```
 
-### View Components (Storybook)
-
-```sh
-npm run storybook
-```
-
 <!-- ### Deployment
 
 Make a pull request and when approved and merged the changes will show up on website.
