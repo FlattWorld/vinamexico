@@ -4,6 +4,7 @@ import '../styles/globals.css';
 import { Footer, Header } from '../ui/layout';
 const poppins = Poppins({
   weight: '500',
+  subsets: ['latin-ext'],
 });
 
 export default function App({ Component, pageProps }: AppProps) {
