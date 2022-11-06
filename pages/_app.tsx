@@ -1,8 +1,9 @@
 import { Poppins } from '@next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from 'next/app';
+import Header from 'ui/layout/Header/Header';
 import '../styles/globals.css';
-import { Footer, Header } from '../ui/layout';
+import Footer from '../ui/layout/Footer';
 const poppins = Poppins({
   weight: '500',
   subsets: ['latin-ext'],
