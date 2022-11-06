@@ -44,8 +44,8 @@ const MobileNav = ({
 }) => {
   const router = useRouter();
   const onSelection = (route: string) => {
-    router.push(route);
     if (onSelectProp) onSelectProp();
+    router?.push(route);
   };
   return (
     <div className="absolute right-6 top-6 shadow-lg theme-secondary w-60 px-8 py-4 rounded z-20">
