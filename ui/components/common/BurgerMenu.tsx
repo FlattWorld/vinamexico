@@ -6,7 +6,7 @@ const BurgerMenu = ({
   clickHandler: Function;
 }) => {
   return (
-    <button className="" onClick={() => clickHandler(!isMenuOpen)}>
+    <button onClick={() => clickHandler()}>
       <div
         className={`h-1 w-6 dark:bg-vina-yellow-medium bg-vina-blue-dark transition-transform mt-1 ${
           isMenuOpen && '-rotate-45 translate-y-1'

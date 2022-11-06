@@ -16,6 +16,7 @@ const ThemeSelector = ({
 
   return (
     <button
+      aria-label="Theme Selector"
       type="button"
       className="w-16 h-8 border rounded-full border-vina-blue-dark dark:border-vina-yellow-medium relative"
       onClick={() => themeSet(theme === 'light' ? 'dark' : 'light')}

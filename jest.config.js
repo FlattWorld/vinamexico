@@ -18,6 +18,15 @@ const customJestConfig = {
     '^Components$': 'ui/components/index.ts',
     '^Pages/(.*)$': '<rootDir>/pages/$1',
   },
+
+  collectCoverage: true,
+  collectCoverageFrom: ['./ui/**', './utils/**'],
+  coverageThreshold: {
+    global: {
+      lines: 80,
+    },
+  },
+  testPathIgnorePatterns: ['/index.ts'],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

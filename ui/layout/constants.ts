@@ -1,10 +1,5 @@
 export const MENU = [
   {
-    id: 'menu-home-0',
-    to: '/',
-    name: 'Inicio',
-  },
-  {
     id: 'menu-nosotros-1',
     to: '/nosotros',
     name: 'Nosotros',
@@ -20,8 +15,8 @@ export const MENU = [
     name: 'Eventos',
   },
   {
-    id: 'menu-encuentra-una-iglesia-4',
-    to: '/encuentra-una-iglesia',
-    name: 'Encuentra una Iglesia',
+    id: 'menu-encuentra-tu-iglesia-4',
+    to: '/encuentra-tu-iglesia',
+    name: 'Encuentra tu Iglesia',
   },
 ];
