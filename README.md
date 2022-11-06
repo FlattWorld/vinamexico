@@ -1,4 +1,4 @@
-![website]() <!-- FOTO DEL SITIO -->
+![website](./public/flattworld.svg) <!-- FOTO DEL SITIO -->
 
 <!-- TECNOLOGIAS USADAS -->
 <p align=center>
