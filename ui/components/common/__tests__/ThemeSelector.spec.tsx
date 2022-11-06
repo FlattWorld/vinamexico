@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import ThemeSelector from '../ThemeSelector';
+import ThemeSelector from '../../../layout/Header/components/ThemeSelector';
 
 describe('ThemeSelector Component', () => {
   it('should render', () => {
