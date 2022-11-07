@@ -15,17 +15,18 @@ const DesktopNav = ({
     <nav className="sm:flex w-full hidden">
       <ul className="flex w-full items-center justify-evenly">
         {MENU.map((menuItem) => (
-          <Link
-            href={menuItem.to}
-            key={menuItem.id}
-            className={`hover:bg-vina-yellow-dark hover:dark:bg-vina-purple-dark p-1 md:p-1.5 border-b-2 ${
-              router?.pathname === menuItem.to
-                ? 'border-vina-orange-medium'
-                : 'border-transparent'
-            }`}
-          >
-            {menuItem.name}
-          </Link>
+          <li key={menuItem.id}>
+            <Link
+              href={menuItem.to}
+              className={`hover:bg-vina-yellow-dark hover:dark:bg-vina-purple-dark p-1 md:p-1.5 border-b-2 ${
+                router?.pathname === menuItem.to
+                  ? 'border-vina-orange-medium'
+                  : 'border-transparent'
+              }`}
+            >
+              {menuItem.name}
+            </Link>
+          </li>
         ))}
       </ul>
       <ThemeSelector theme={theme} themeSet={themeSet} />

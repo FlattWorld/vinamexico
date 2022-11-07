@@ -17,6 +17,8 @@ export default function Home() {
             src={jesusBg}
             alt="background"
             className="h-[75vh] object-cover"
+            priority={true}
+            placeholder="blur"
           ></Image>
           <Container extraStyles="absolute top-1/2 right-1/2 transform translate-x-1/2 -translate-y-1/2">
             .
