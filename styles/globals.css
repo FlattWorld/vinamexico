@@ -19,9 +19,10 @@
     @apply px-4 py-2 rounded-sm
     dark:bg-vina-yellow-medium dark:text-vina-blue-dark dark:hover:bg-vina-orange-medium
     text-vina-yellow-dark bg-vina-blue-dark hover:bg-vina-purple-medium
-    border-vina-yellow-dark border;
+    border-vina-yellow-dark border
+    active:bg-vina-purple-dark dark:active:bg-vina-orange-dark;
   }
   .theme-title {
-    @apply text-vina-blue-medium dark:text-vina-orange-medium;
+    @apply text-vina-blue-medium dark:text-vina-orange-dark;
   }
 }
