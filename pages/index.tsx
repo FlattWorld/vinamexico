@@ -1,4 +1,4 @@
-import { Carousel, Container } from 'Components';
+import { BlogPost, Carousel, Container } from 'Components';
 import Head from 'next/head';
 import Image from 'next/image';
 
@@ -40,11 +40,13 @@ export default function Home() {
       </Head>
       <div className="section flex-col">
         <HomeHero />
-        <Carousel
-          elementList={blogPosts}
-          secondStep={8}
-          childComponent="BlogPost"
-        ></Carousel>
+        <div className="section theme-primary">
+          <Carousel secondStep={8}>
+            {blogPosts.map((post) => (
+              <BlogPost post={post} key={post.id} extraStyles="" />
+            ))}
+          </Carousel>
+        </div>
       </div>
     </>
   );

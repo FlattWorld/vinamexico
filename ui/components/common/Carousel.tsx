@@ -1,6 +1,6 @@
-import * as components from 'Components';
+import { Container } from 'Components';
 
-import { useEffect, useRef, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import { safeClientFunction } from 'utils/clientSideFunctions';
 
 const ArrowIcon = ({
@@ -27,17 +27,10 @@ const ArrowIcon = ({
 );
 
 const Carousel = ({
-  elementList,
-  childComponent,
+  children,
   secondStep = 5,
 }: {
-  elementList: {
-    id: number;
-    title: string;
-    description: string;
-    thumbnail: string;
-  }[];
-  childComponent: keyof typeof components;
+  children: ReactNode[];
   secondStep?: number;
 }) => {
   if (secondStep < 1) secondStep = 1;
@@ -54,7 +47,7 @@ const Carousel = ({
     const lasElementIdentifier = step === 33.33 ? 4 : step == 50 ? 3 : 2;
     if (
       stepChange > 0 &&
-      currentPost > elementList.length - lasElementIdentifier
+      currentPost > children.length - lasElementIdentifier
     ) {
       currentPostSet(0);
       return;
@@ -81,35 +74,31 @@ const Carousel = ({
   }, []);
 
   return (
-    <div className="section theme-primary">
-      <components.Container extraStyles="flex-col">
-        <h1 className="text-5xl font-bold theme-title my-20">
-          Mensaje de Dios para ti
-        </h1>
-        <div className="flex w-full justify-between relative px-0 overflow-hidden">
-          <button
-            onClick={() => changePost(-1)}
-            className="absolute top-1/3 -left-0 z-20"
-          >
-            <ArrowIcon size="8" extraStyles="" />
-          </button>
-          <ul
-            ref={list}
-            className={`flex w-full transform transition-transform justify-between ease-out duration-700`}
-          >
-            {elementList.map((post) => (
-              <components.BlogPost post={post} key={post.id} extraStyles="" />
-            ))}
-          </ul>
-          <button
-            onClick={() => changePost(1)}
-            className="absolute top-1/3 -right-0 z-20"
-          >
-            <ArrowIcon size="8" extraStyles="transform rotate-180" />
-          </button>
-        </div>
-      </components.Container>
-    </div>
+    <Container extraStyles="flex-col">
+      <h1 className="text-5xl font-bold theme-title my-20">
+        Mensaje de Dios para ti
+      </h1>
+      <div className="flex w-full justify-between relative px-0 overflow-hidden">
+        <button
+          onClick={() => changePost(-1)}
+          className="absolute top-1/3 -left-0 z-20"
+        >
+          <ArrowIcon size="8" extraStyles="" />
+        </button>
+        <ul
+          ref={list}
+          className={`flex w-full transform transition-transform justify-between ease-out duration-700`}
+        >
+          {children}
+        </ul>
+        <button
+          onClick={() => changePost(1)}
+          className="absolute top-1/3 -right-0 z-20"
+        >
+          <ArrowIcon size="8" extraStyles="transform rotate-180" />
+        </button>
+      </div>
+    </Container>
   );
 };
 export default Carousel;
