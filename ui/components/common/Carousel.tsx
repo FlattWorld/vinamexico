@@ -75,7 +75,10 @@ const Carousel = ({
 
   return (
     <Container extraStyles="flex-col">
-      <h1 className="text-5xl font-bold theme-title my-20">
+      <h1
+        className="text-5xl font-bold theme-title my-20"
+        data-testid={`test_id_${currentPost}`}
+      >
         Mensaje de Dios para ti
       </h1>
       <div className="flex w-full justify-between relative px-0 overflow-hidden">

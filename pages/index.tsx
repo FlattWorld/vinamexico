@@ -1,8 +1,7 @@
 import { BlogPost, Carousel, Container } from 'Components';
 import Head from 'next/head';
 import Image from 'next/image';
-
-import { blogPosts } from 'ui/components/Home/constants';
+import { useState } from 'react';
 import jesusBg from '../public/jesus-bg.jpg';
 
 const HomeHero = () => (
@@ -30,7 +29,30 @@ const HomeHero = () => (
   </div>
 );
 
-export default function Home() {
+export default function Home({
+  blogPosts,
+  errorsProp,
+}: {
+  blogPosts: {
+    id: number;
+    title: string;
+    description: string;
+    thumbnail: string;
+  }[];
+  errorsProp: { blog: boolean };
+}) {
+  const [posts, postsSet] = useState(blogPosts);
+  const [errors, errorsSet] = useState(errorsProp);
+  const retryBlogPosts = async () => {
+    try {
+      const resBlogs = await fetch('http://localhost:3000/api/home');
+      const postData = await resBlogs.json();
+      postsSet(postData);
+      errorsSet({ ...errors, blog: false });
+    } catch (_e) {
+      return;
+    }
+  };
   return (
     <>
       <Head>
@@ -41,13 +63,43 @@ export default function Home() {
       <div className="section flex-col">
         <HomeHero />
         <div className="section theme-primary">
-          <Carousel secondStep={8}>
-            {blogPosts.map((post) => (
-              <BlogPost post={post} key={post.id} extraStyles="" />
-            ))}
-          </Carousel>
+          {!errors.blog && (
+            <Carousel secondStep={8}>
+              {posts.map((post) => (
+                <BlogPost post={post} key={post.id} extraStyles="" />
+              ))}
+            </Carousel>
+          )}
+          {errors.blog && (
+            <div className="flex flex-col w-full items-center">
+              <h1 className="text-5xl my-16">Failed to load blogPosts</h1>
+              <button
+                onClick={() => retryBlogPosts()}
+                className="btn-primary px-8"
+              >
+                Retry
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>
   );
+}
+export async function getStaticProps() {
+  let blogPosts = null;
+  try {
+    const resBlogs = await fetch('http://localhost:3000/api/home');
+    blogPosts = await resBlogs.json();
+    return {
+      props: { blogPosts, errorsProp: { blog: !blogPosts } },
+    };
+  } catch (e) {
+    return {
+      props: {
+        blogPosts,
+        errorsProp: { blog: !blogPosts },
+      },
+    };
+  }
 }

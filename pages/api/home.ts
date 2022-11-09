@@ -1,4 +1,14 @@
-export const blogPosts = [
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import type { NextApiRequest, NextApiResponse } from 'next';
+
+type Data = {
+  id: number;
+  title: string;
+  description: string;
+  thumbnail: string;
+};
+
+const blogPosts = [
   {
     id: 1,
     title: 'Blog cristiano de cosas cristianas',
@@ -48,3 +58,10 @@ export const blogPosts = [
       'https://absolutewellnesscenters.com/wp-content/uploads/2020/06/350px-X-350px-Placeholder-Image-.jpg',
   },
 ];
+
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data[]>
+) {
+  res.status(200).json(blogPosts);
+}
