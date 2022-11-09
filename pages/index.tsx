@@ -2,6 +2,7 @@ import { BlogPost, Carousel, Container } from 'Components';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState } from 'react';
+import { TEMPblogPosts } from 'ui/components/Home/constants';
 import jesusBg from '../public/jesus-bg.jpg';
 
 const HomeHero = () => (
@@ -50,6 +51,9 @@ export default function Home({
       postsSet(postData);
       errorsSet({ ...errors, blog: false });
     } catch (_e) {
+      //TEMPORAL CHANGES TO MOCK POSTS
+      postsSet(TEMPblogPosts);
+      errorsSet({ ...errors, blog: false });
       return;
     }
   };
