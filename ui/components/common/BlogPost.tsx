@@ -9,7 +9,7 @@ const BlogPost = ({
     description: string;
     thumbnail: string;
   };
-  extraStyles: string;
+  extraStyles?: string;
 }) => (
   <li
     className={`w-full lg:w-1/2  xl:w-1/3 flex-shrink-0 flex flex-col items-center ${extraStyles}`}
