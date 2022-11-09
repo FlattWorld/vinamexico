@@ -83,6 +83,7 @@ const Carousel = ({
       </h1>
       <div className="flex w-full justify-between relative px-0 overflow-hidden">
         <button
+          aria-label="previous-post"
           onClick={() => changePost(-1)}
           className="absolute top-1/3 -left-0 z-20"
         >
@@ -95,6 +96,7 @@ const Carousel = ({
           {children}
         </ul>
         <button
+          aria-label="next-post"
           onClick={() => changePost(1)}
           className="absolute top-1/3 -right-0 z-20"
         >

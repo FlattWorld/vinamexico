@@ -23,6 +23,6 @@
     active:bg-vina-purple-dark dark:active:bg-vina-orange-dark;
   }
   .theme-title {
-    @apply text-vina-blue-medium dark:text-vina-orange-dark;
+    @apply text-vina-blue-medium dark:text-vina-orange-medium;
   }
 }
