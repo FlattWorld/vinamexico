@@ -79,6 +79,8 @@ describe('Carousel component', () => {
     customGlobal.innerWidth = 500;
     fireEvent(customGlobal, new Event('resize'));
     fireEvent.click(buttonPlus);
+
+    expect(screen.queryByTestId('test_id_1')).toBeInTheDocument();
   });
 
   it('should manage timers', async () => {
