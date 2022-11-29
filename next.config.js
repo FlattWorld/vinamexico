@@ -2,12 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  i18n: {
-    locales: ['es'],
-    defaultLocale: 'es',
-  },
   images: {
-    domains: ['absolutewellnesscenters.com'],
+    domains: ['absolutewellnesscenters.com', 'placehold.jp'],
   },
 };
 

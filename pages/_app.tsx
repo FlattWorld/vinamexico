@@ -1,7 +1,9 @@
 import { Poppins } from '@next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from 'next/app';
+import { useState } from 'react';
 import Header from 'ui/layout/Header/Header';
+import { LanguageContext } from 'utils/contexts';
 import '../styles/globals.css';
 import Footer from '../ui/layout/Footer';
 const poppins = Poppins({
@@ -10,6 +12,7 @@ const poppins = Poppins({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [language, languageSet] = useState('ES');
   return (
     <>
       <style jsx global>{`
@@ -17,9 +20,11 @@ export default function App({ Component, pageProps }: AppProps) {
           font-family: ${poppins.style.fontFamily};
         }
       `}</style>
-      <Header />
+      <Header lang={language} langChange={languageSet} />
       <main>
-        <Component {...pageProps} />
+        <LanguageContext.Provider value={language}>
+          <Component {...pageProps} />
+        </LanguageContext.Provider>
       </main>
       <Footer />
       <Analytics />
