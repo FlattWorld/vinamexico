@@ -7,11 +7,13 @@ import { useContext, useState } from 'react';
 import { TEMPblogPosts } from 'ui/components/Home/constants';
 import { LanguageContext } from 'utils/contexts';
 
-import { valores } from 'utils/staticTexts';
+import { MisionAndVision, valores } from 'utils/staticTexts';
 import crossBg from '../public/cross-bg.png';
 import hands from '../public/hands.svg';
 import hands2 from '../public/hands2.svg';
 import jesusBg from '../public/jesus-bg.jpg';
+
+type langType = 'EN' | 'ES';
 
 const HomeHero = () => (
   <div className="section h-[75vh">
@@ -38,32 +40,26 @@ const HomeHero = () => (
   </div>
 );
 
-const MisionYVision = () => (
-  <div className="flex flex-col items-center">
-    <h2 className="theme-title">Nuestra visión y misión</h2>
-    <div className="flex gap-8 w-10/12">
-      <Image src={hands} alt="hands-praying" className="w-1/3 border" />
-      <div className="w-2/3 flex flex-col gap-8 justify-center">
-        <p>
-          Creemos que <span className="keyword">La Viña México</span> ha sido
-          colocada por Dios en este momento y lugar con un fin específico. Así
-          pues, decimos que existimos para extender el reino de Dios en México y
-          el mundo, siendo un movimiento unido que planta iglesias culturalmente
-          relevantes.
-        </p>
-        <p>
-          En el cumplimiento de la misión que nos ha sido encomendada por Dios,
-          nos soñamos yendo más allá del futuro inmediato. Así, nuestra visión
-          nos lleva a decir que soñamos ver nuevas iglesias Viña en toda la
-          República, siendo agentes de cambio que infiltran a la sociedad con
-          nuestros valores.
-        </p>
+const MisionYVision = () => {
+  const lang: langType = useContext(LanguageContext) as langType;
+  return (
+    <div className="flex flex-col items-center">
+      <h2 className="theme-title">Nuestra visión y misión</h2>
+      <div className="flex gap-8 w-10/12">
+        <Image src={hands} alt="hands-praying" className="w-1/3 border" />
+        <div className="w-2/3 flex flex-col gap-8 justify-center">
+          <p>
+            <span>{MisionAndVision[lang][0]}</span>
+            <span className="keyword">{MisionAndVision[lang][1]}</span>
+            <span>{MisionAndVision[lang][2]}</span>
+          </p>
+          <p>{MisionAndVision[lang][3]}</p>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
-type langType = 'EN' | 'ES';
 const Valores = () => {
   const lang: langType = useContext(LanguageContext) as langType;
   return (
@@ -166,11 +162,15 @@ export default function Home({
             ))}
           </Carousel>
         </div>
-        <div className="container theme-primary pb-16">
-          <MisionYVision />
+        <div className="section theme-primary pb-16">
+          <div className="container">
+            <MisionYVision />
+          </div>
         </div>
         <div className="section theme-secondary pb-16">
-          <Valores></Valores>
+          <div className="container">
+            <Valores />
+          </div>
         </div>
       </div>
     </>
