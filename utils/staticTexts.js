@@ -58,3 +58,18 @@ export const valores = {
     ],
   },
 };
+
+export const MisionAndVision = {
+  EN: [
+    'Creemos que ',
+    'La Viña México ',
+    'ha sido colocada por Dios en este momento y lugar con un fin específico. Así pues, decimos que existimos para extender el reino de Dios en México y el mundo, siendo un movimiento unido que planta iglesias culturalmente relevantes.',
+    'En el cumplimiento de la misión que nos ha sido encomendada por Dios, nos soñamos yendo más allá del futuro inmediato. Así, nuestra visión nos lleva a decir que soñamos ver nuevas iglesias Viña en toda a República, siendo agentes de cambio que infiltran a la sociedad con nuestros valores.',
+  ],
+  ES: [
+    'Creemos que ',
+    'La Viña México ',
+    'ha sido colocada por Dios en este momento y lugar con un fin específico. Así pues, decimos que existimos para extender el reino de Dios en México y el mundo, siendo un movimiento unido que planta iglesias culturalmente relevantes.',
+    'En el cumplimiento de la misión que nos ha sido encomendada por Dios, nos soñamos yendo más allá del futuro inmediato. Así, nuestra visión nos lleva a decir que soñamos ver nuevas iglesias Viña en toda a República, siendo agentes de cambio que infiltran a la sociedad con nuestros valores.',
+  ],
+};
