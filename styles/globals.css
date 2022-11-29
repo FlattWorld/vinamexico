@@ -23,6 +23,9 @@
     active:bg-vina-purple-dark dark:active:bg-vina-orange-dark;
   }
   .theme-title {
-    @apply text-vina-blue-medium dark:text-vina-orange-medium;
+    @apply text-5xl text-center font-bold my-20;
+  }
+  .keyword {
+    @apply font-medium text-vina-orange-medium;
   }
 }

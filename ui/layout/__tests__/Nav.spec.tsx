@@ -23,10 +23,15 @@ describe('Nav Component', () => {
   it('should render desktop view correctly', () => {
     const themeSet = jest.fn();
     const { baseElement } = render(
-      <Nav theme="light" themeSet={themeSet}></Nav>
+      <Nav
+        theme="light"
+        themeSet={themeSet}
+        lang="es"
+        langChange={() => null}
+      ></Nav>
     );
 
-    const button = screen.getByRole('button');
+    const button = screen.getAllByRole('button')[2];
     fireEvent.click(button);
 
     expect(themeSet).toBeCalledTimes(1);
@@ -52,6 +57,8 @@ describe('Nav Component', () => {
     const onSelectProp = jest.fn();
     render(
       <Nav
+        lang="es"
+        langChange={() => null}
         theme="light"
         themeSet={themeSet}
         viewPort="mobile"
@@ -88,6 +95,8 @@ describe('Nav Component', () => {
     const onSelectProp = jest.fn();
     render(
       <Nav
+        lang="es"
+        langChange={() => null}
         theme="light"
         themeSet={themeSet}
         viewPort="mobile"

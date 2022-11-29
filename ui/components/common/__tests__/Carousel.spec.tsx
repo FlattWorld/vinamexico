@@ -5,13 +5,14 @@ import {
   render,
   screen,
 } from '@testing-library/react';
-import { BlogPost, Carousel } from 'Components';
+import { BlogPost, Carousel, EventPost } from 'Components';
+import { TEMPblogPosts } from '../../Home/constants';
 
 afterEach(cleanup);
 describe('Carousel component', () => {
   it('should render correctly', () => {
     const { baseElement } = render(
-      <Carousel secondStep={0}>
+      <Carousel secondStep={0} title="test">
         <BlogPost
           post={{
             id: 5,
@@ -32,9 +33,44 @@ describe('Carousel component', () => {
     );
     expect(baseElement).toBeDefined();
   });
+  it('should render correctly mock data', () => {
+    const { baseElement } = render(
+      <Carousel secondStep={0} title="test">
+        {TEMPblogPosts.map((post) => (
+          <BlogPost key={post.id} post={post} />
+        ))}
+      </Carousel>
+    );
+    expect(baseElement).toBeDefined();
+  });
+
+  it('should render events correctly', () => {
+    const { baseElement } = render(
+      <Carousel secondStep={0} title="test">
+        <EventPost
+          post={{
+            id: 5,
+            title: 'Number',
+            description: 'Number',
+            thumbnail: '/Number',
+          }}
+        />
+        <EventPost
+          post={{
+            id: 5,
+            title: 'Number',
+            description: 'Number',
+            thumbnail: '/Number',
+          }}
+        />
+      </Carousel>
+    );
+    expect(baseElement).toBeDefined();
+  });
+
   it('should change posts', () => {
     const { baseElement } = render(
-      <Carousel>
+      <Carousel title="test">
         <h1>Hello</h1>
         <span>World</span>
         <h1>Hello</h1>
@@ -59,7 +95,7 @@ describe('Carousel component', () => {
     const customGlobal: any = global;
     customGlobal.innerWidth = 500;
     render(
-      <Carousel secondStep={1}>
+      <Carousel secondStep={1} title="test">
         <h1>Hello</h1>
         <span>World</span>
         <span>World</span>
@@ -88,7 +124,7 @@ describe('Carousel component', () => {
     customGlobal.innerWidth = 500;
     jest.useFakeTimers();
     render(
-      <Carousel secondStep={1}>
+      <Carousel secondStep={1} title="test">
         <h1>Hello</h1>
         <span>World</span>
         <span>World</span>

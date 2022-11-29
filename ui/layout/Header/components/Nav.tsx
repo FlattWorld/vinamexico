@@ -6,9 +6,13 @@ import ThemeSelector from './ThemeSelector';
 const DesktopNav = ({
   theme,
   themeSet,
+  lang,
+  langChange,
 }: {
   theme: string;
   themeSet: Function;
+  lang: string;
+  langChange: Function;
 }) => {
   const router = useRouter();
   return (
@@ -29,7 +33,12 @@ const DesktopNav = ({
           </li>
         ))}
       </ul>
-      <ThemeSelector theme={theme} themeSet={themeSet} />
+      <ThemeSelector
+        lang={lang}
+        langChange={langChange}
+        theme={theme}
+        themeSet={themeSet}
+      />
     </nav>
   );
 };
@@ -38,10 +47,14 @@ const MobileNav = ({
   onSelectProp,
   theme,
   themeSet,
+  lang,
+  langChange,
 }: {
   theme: string;
   themeSet: Function;
   onSelectProp?: Function;
+  lang: string;
+  langChange: Function;
 }) => {
   const router = useRouter();
   const onSelection = (route: string) => {
@@ -77,12 +90,19 @@ const MobileNav = ({
             </button>
           ))}
         </ul>
-        <ThemeSelector theme={theme} themeSet={themeSet} />
+        <ThemeSelector
+          lang={lang}
+          langChange={langChange}
+          theme={theme}
+          themeSet={themeSet}
+        />
       </nav>
     </div>
   );
 };
 interface NavProps {
+  lang: string;
+  langChange: Function;
   viewPort?: string;
   theme: string;
   themeSet: Function;
@@ -94,12 +114,22 @@ const Nav = (props: NavProps) => {
   if (props.viewPort === 'mobile')
     return (
       <MobileNav
+        lang={props.lang}
+        langChange={props.langChange}
         theme={theme}
         themeSet={themeSet}
         onSelectProp={onSelectProp}
       />
     );
-  else return <DesktopNav theme={theme} themeSet={themeSet} />;
+  else
+    return (
+      <DesktopNav
+        lang={props.lang}
+        langChange={props.langChange}
+        theme={theme}
+        themeSet={themeSet}
+      />
+    );
 };
 
 export default Nav;

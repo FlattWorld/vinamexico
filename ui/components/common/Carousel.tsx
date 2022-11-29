@@ -28,9 +28,11 @@ const ArrowIcon = ({
 
 const Carousel = ({
   children,
+  title,
   secondStep = 5,
 }: {
   children: ReactNode[];
+  title: string;
   secondStep?: number;
 }) => {
   if (secondStep < 1) secondStep = 1;
@@ -75,12 +77,12 @@ const Carousel = ({
 
   return (
     <Container extraStyles="flex-col">
-      <h1
-        className="text-5xl font-bold theme-title my-20"
+      <h2
+        className="text-5xl text-center font-bold my-20"
         data-testid={`test_id_${currentPost}`}
       >
-        Mensaje de Dios para ti
-      </h1>
+        {title}
+      </h2>
       <div className="flex w-full justify-between relative px-0 overflow-hidden">
         <button
           aria-label="previous-post"
