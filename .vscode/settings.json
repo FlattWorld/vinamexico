@@ -1,9 +1,10 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
+    "source.fixAll": false,
     "source.organizeImports": true
   },
-  "githubPullRequests.ignoredPullRequestBranches": ["development"]
+  "githubPullRequests.ignoredPullRequestBranches": ["development"],
+  "cSpell.words": ["Encuentra", "Iglesia"]
 }
