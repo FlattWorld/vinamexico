@@ -1,91 +1,18 @@
-import { BlogPost, Carousel, Container, EventPost } from 'Components';
+import {
+  BlogPost,
+  Carousel,
+  EventPost,
+  HomeHero,
+  MisionYVision,
+  Valores,
+} from 'Components';
 
 import Head from 'next/head';
-import Image from 'next/image';
 import Link from 'next/link';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { TEMPblogPosts } from 'ui/components/Home/constants';
-import { LanguageContext } from 'utils/contexts';
-
-import { MisionAndVision, valores } from 'utils/staticTexts';
 import crossBg from '../public/cross-bg.png';
-import hands from '../public/hands.svg';
-import hands2 from '../public/hands2.svg';
-import jesusBg from '../public/jesus-bg.jpg';
 
-type langType = 'EN' | 'ES';
-
-const HomeHero = () => (
-  <div className="section h-[75vh">
-    <Image
-      src={jesusBg}
-      alt="background"
-      className="h-[75vh] object-cover object-bottom"
-      priority={true}
-      placeholder="blur"
-    ></Image>
-    <Container extraStyles="flex justify-end absolute top-1/2 right-1/2 transform translate-x-1/2 -translate-y-1/2">
-      <div className="flex flex-col items-center max-w-md w-full center text-white  text-center">
-        <h1 className="text-5xl">Texto bien cristiano</h1>
-        <p>Texto bien cristiano pero mas chiquito</p>
-        <a
-          className="btn-primary mt-8 mr-8 self-end border-vina-yellow-dark border"
-          href="#contact"
-          aria-label="contact link"
-        >
-          Contacto
-        </a>
-      </div>
-    </Container>
-  </div>
-);
-
-const MisionYVision = () => {
-  const lang: langType = useContext(LanguageContext) as langType;
-  return (
-    <div className="flex flex-col items-center">
-      <h2 className="theme-title">Nuestra visión y misión</h2>
-      <div className="flex gap-8 w-10/12">
-        <Image src={hands} alt="hands-praying" className="w-1/3 border" />
-        <div className="w-2/3 flex flex-col gap-8 justify-center">
-          <p>
-            <span>{MisionAndVision[lang][0]}</span>
-            <span className="keyword">{MisionAndVision[lang][1]}</span>
-            <span>{MisionAndVision[lang][2]}</span>
-          </p>
-          <p>{MisionAndVision[lang][3]}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Valores = () => {
-  const lang: langType = useContext(LanguageContext) as langType;
-  return (
-    <div className="flex flex-col items-center">
-      <h2 className="theme-title">Valores de la Viña</h2>
-      <div className="flex flex-row-reverse gap-8 w-10/12">
-        <Image src={hands2} alt="hands-praying" className="w-1/3 border" />
-        <div className="w-2/3 flex flex-col gap-8 justify-center text-vina-yellow-medium">
-          <h3>
-            {valores[lang].title[0]}
-            <span className="keyword">{valores[lang].title[1]}</span>
-            {valores[lang].title[2]}
-          </h3>
-          <ul className="flex flex-col gap-4 list-disc">
-            {valores[lang].texts.map(([value, description]) => (
-              <li key={value} className="">
-                <span className="keyword">{value}</span>
-                {description}
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </div>
-  );
-};
 export default function Home({
   blogPosts,
   errorsProp,
