@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import birdCross from 'public/birdCross.png';
 const BlogPost = ({
   post,
   extraStyles,
@@ -8,6 +9,9 @@ const BlogPost = ({
     title: string;
     description: string;
     thumbnail: string;
+    time?: string;
+    place?: string;
+    date: string;
   };
   extraStyles?: string;
 }) => (
@@ -17,20 +21,17 @@ const BlogPost = ({
     <Image
       width={100}
       height={350}
-      src={'https://placehold.jp/100x350.png'}
+      src={post.thumbnail || birdCross.src}
       alt={post.title + 'blogpost'}
     ></Image>
     <div className="bg-white text-vina-blue-dark h-full relative flex flex-col justify-between p-4 pt-24 items-end">
       <span className="p-2 font-semibold bg-vina-orange-medium absolute top-4 -left-1/4 sm:w-2/3 text-center flex flex-col">
-        28 de noviembre
-        <span className="text-xs font-normal">10:00 hrs / Valle de Bravo</span>
+        {post.date}
+        <span className="text-xs font-normal">{`${post.time} / ${post.place}`}</span>
       </span>
-      <h2 className="text-center font-semibold w-full">
-        Encabezado de la reunión
-      </h2>
-      <p className="text-justify">
-        Lorem ipsum dolor sit, amet conse ctetur adipis icing elit. Iusto saep
-        eamet conse tetur adipi sicing elit. Iusto saepe
+      <h2 className="text-center font-semibold w-full">{post.title}</h2>
+      <p className="text-justify overflow-elipsis text-ellipsis max-h-36 leading-tight text-xs">
+        {post.description}
       </p>
       <button className="btn-primary">Ver más</button>
     </div>
