@@ -40,6 +40,19 @@ export default function Home({
       return;
     }
   };
+
+  const eventos = [
+    {
+      id: 0,
+      title: 'Reunión Anual de Pastores y Plantadores de la Viña México',
+      description:
+        'Queridos hermanos, amigos y consiervos. En esta reunión queremos tener tiempo de adoración juntos, fortalecer lazos de hermandad y amistad, mirar juntos hacia el futuro, reafirmar nuestra identidad y valores como movimiento y seguir construyendo juntos.',
+      place: 'Mazatlán',
+      date: 'Nov 15-17 2023',
+      time: '',
+      thumbnail: '',
+    },
+  ];
   return (
     <>
       <Head>
@@ -84,7 +97,7 @@ export default function Home({
           className="section flex-col pb-16 text-vina-yellow-dark"
         >
           <Carousel title="Próximos eventos" secondStep={16}>
-            {posts.map((post) => (
+            {eventos.map((post) => (
               <EventPost post={post} key={post.id} extraStyles="" />
             ))}
           </Carousel>
