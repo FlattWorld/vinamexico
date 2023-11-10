@@ -2,26 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer components {
+  .section {
+    @apply w-full flex items-center justify-center;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  .container {
+    @apply w-full max-w-7xl px-4 xl:px-0 flex items-center;
+  }
+  .theme-primary {
+    @apply text-vina-blue-dark dark:bg-vina-blue-dark dark:text-vina-yellow-medium bg-vina-yellow-medium;
+  }
+  .theme-secondary {
+    @apply bg-vina-yellow-dark dark:bg-vina-blue-medium text-vina-blue-medium dark:text-vina-yellow-dark;
+  }
+  .btn-primary {
+    @apply px-4 py-2 rounded-sm
+    dark:bg-vina-yellow-medium dark:text-vina-blue-dark dark:hover:bg-vina-orange-medium
+    text-vina-yellow-dark bg-vina-blue-dark hover:bg-vina-purple-medium
+    border-vina-yellow-dark border
+    active:bg-vina-purple-dark dark:active:bg-vina-orange-dark;
+  }
+  .theme-title {
+    @apply text-5xl text-center font-bold my-20;
+  }
+  .keyword {
+    @apply dark:text-vina-orange-medium text-vina-purple-medium font-semibold;
+  }
 }

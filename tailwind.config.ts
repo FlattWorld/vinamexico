@@ -13,8 +13,22 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        vina: {
+          'blue-dark': '#0d2b45',
+          'blue-medium': '#203c56',
+          'purple-dark': '#544e68',
+          'purple-medium': '#8d697a',
+          'orange-dark': '#d08159',
+          'orange-medium': '#ffaa5e',
+          'yellow-dark': '#ffd4a3',
+          'yellow-medium': '#ffecd6',
+        },
+      },
+    
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  darkMode: ['class'],
 }
 export default config
