@@ -6,7 +6,7 @@ import { Button } from '@/components';
 import { SIN_DEFINIR } from '@/utils/constants';
 import { Church } from '@/utils/types';
 
-export const renderChurchList = (churches: Church[]) =>
+const renderChurchList = (churches: Church[]) =>
   churches.map((church) => (
     <li
       key={church.name + church.pastor.join(',')}

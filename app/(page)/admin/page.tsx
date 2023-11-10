@@ -34,7 +34,7 @@ export default function Editor() {
   return (
     <div className="min-h-screen">
       <div className="p-24">
-      <div id={'editorjs'} className="prose max-w-full" />
+      <div id='editorjs' className="prose max-w-full" />
       <Button onClick={save} >Save</Button>
     </div>
     </div>
