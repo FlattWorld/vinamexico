@@ -10,13 +10,12 @@ const [postInfo, setPostInfo] = useState()
 const updatePost = (data:any) => { setPostInfo(data) }
 const savePost = () => { console.log("save") }
 
-
-
   return (
-    <>
+    <div className='w-full border min-h-screen'>
       <Editor onChange={updatePost} holder="editorjs" />
-      {JSON.stringify(postInfo)}
-      <Button onClick={savePost}>Save</Button>
-    </>
+      <div className='w-full flex justify-center'>
+        <Button onClick={savePost}>Guardar Post</Button>
+        </div>
+    </div>
   );
 };

@@ -11,19 +11,22 @@ import {
 import Head from 'next/head';
 import Link from 'next/link';
 import crossBg from '@/public/cross-bg.png';
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
+  const router = useRouter()
 
   const eventos = [
     {
-      id: 0,
-      title: 'Reunión Anual de Pastores y Plantadores de la Viña México',
+      id: 1,
+      title: 'Conferencia Nacional Viña 2024',
       description:
-        'Queridos hermanos, amigos y consiervos. En esta reunión queremos tener tiempo de adoración juntos, fortalecer lazos de hermandad y amistad, mirar juntos hacia el futuro, reafirmar nuestra identidad y valores como movimiento y seguir construyendo juntos.',
-      place: 'Mazatlán',
-      date: 'Nov 15-17 2023',
+        'Estimados Pastores y Líderes. Estamos tan emocionados por lo que Dios ha preparado para el movimiento Viña este siguiente año.',
+      place: 'Mexicali B.C.',
+      date: 'Abril 3-5 2024',
       time: '',
       thumbnail: '',
+      onClick: () => router.push('/eventos/65a61aa345465a31ce8b201f')
     },
   ];
 
