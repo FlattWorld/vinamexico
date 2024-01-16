@@ -1,3 +1,5 @@
+
+
 import { Container } from '@/components';
 
 import { ReactNode, useEffect, useRef, useState } from 'react';
@@ -87,7 +89,7 @@ const Carousel = ({
         <button
           aria-label="previous-post"
           onClick={() => changePost(-1)}
-          className="absolute top-1/3 -left-0 z-20"
+          className="absolute top-1/3 -left-0 z-20 opacity-40 hover:opacity-90"
         >
           <ArrowIcon size="8" extraStyles="" />
         </button>
@@ -100,7 +102,7 @@ const Carousel = ({
         <button
           aria-label="next-post"
           onClick={() => changePost(1)}
-          className="absolute top-1/3 -right-0 z-20"
+          className="absolute top-1/3 -right-0 z-20 opacity-40 hover:opacity-90"
         >
           <ArrowIcon size="8" extraStyles="transform rotate-180" />
         </button>

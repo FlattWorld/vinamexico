@@ -74,7 +74,7 @@ const EncuentraTuIglesia = () => {
 
   if (isError)
     return (
-      <div className="w-full flex justify-center items-center flex-col py-16 h-screen">
+      <div className="w-full flex justify-center items-center flex-col py-16 min-h-screen">
         <h2>No se pudieron recuperar las iglesias</h2>
         <Button
           onClick={fetchData}
