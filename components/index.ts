@@ -8,3 +8,4 @@ export { default as Carousel } from './common/Carousel';
 export { default as Container } from './common/Container';
 export { default as Editor } from './common/Editor';
 export { default as EventPost } from './common/EventPost';
+export { default as Input } from './common/Input';
