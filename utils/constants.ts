@@ -1,1 +1,1 @@
-export const SIN_DEFINIR = 'Sin definir';
+export const SIN_DEFINIR = 'Sin definir :(';
