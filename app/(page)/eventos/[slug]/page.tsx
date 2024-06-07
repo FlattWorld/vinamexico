@@ -63,7 +63,7 @@ export default function Event({params}:{params:{slug:string}}){
   const onChangeData = ({name, value}:{name: string, value: string | number | boolean}) => setEventFormData({...eventFormData, [name]: value}) 
   const submit = async (e:Event | FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-     const response = await addAssistantToEvent({...eventFormData, eventId: params.slug, message: document.querySelector('textarea')?.value})
+     const response:any = await addAssistantToEvent({...eventFormData, eventId: params.slug, message: document.querySelector('textarea')?.value})
      if(response?.result?.acknowledged) setSuccess(true)
   }
   return (
