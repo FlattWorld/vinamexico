@@ -63,14 +63,13 @@ export default function Event({params}:{params:{slug:string}}){
   const onChangeData = ({name, value}:{name: string, value: string | number | boolean}) => setEventFormData({...eventFormData, [name]: value}) 
   const submit = async (e:Event | FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(document.querySelector('textarea')?.value as string, {...eventFormData, eventId: params.slug, message: document.querySelector('textarea')?.value})
      const response = await addAssistantToEvent({...eventFormData, eventId: params.slug, message: document.querySelector('textarea')?.value})
-     console.log(response)
+     if(response?.result?.acknowledged) setSuccess(true)
   }
   return (
     <div className="bg-vina-yellow-medium dark:bg-vina-blue-dark flex flex-col items-center min-h-screen">
       <iframe src="/evento1.pdf" width={'100%'} height={'500px'} />
-      <h1 className="text-3xl dark:text-white text-center mt-8 mb-12">Registro preliminar</h1>
+      <h1 className="text-3xl dark:text-white text-center mt-8 mb-12">¿Requieres Hospedaje?</h1>
       { success ? <div className="dark:text-white"><h2 className="text-2xl">¡Gracias por registrate!</h2> <span>Nos pondremos en contacto contigo</span></div> :
       <form className="flex flex-col gap-4 w-full max-w-xl" onSubmit={(e) => submit(e)}>
         <Input type="text" label="Nombre" name="name" onChange={onChangeData} value={eventFormData.name}  />
