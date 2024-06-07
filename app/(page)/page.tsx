@@ -23,7 +23,7 @@ export default function Home() {
       description:
         'Estimados Pastores y Líderes. Estamos tan emocionados por lo que Dios ha preparado para el movimiento Viña este siguiente año.',
       place: 'Mexicali B.C.',
-      date: 'Abril 3-5 2024',
+      date: 'Octubre 16-18 2024',
       time: '',
       thumbnail: '',
       onClick: () => router.push('/eventos/65a61aa345465a31ce8b201f')
