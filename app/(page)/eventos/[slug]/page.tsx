@@ -3,6 +3,7 @@ import { Input, Button } from "@/components";
 import { InputProps } from "@/types/componentTypes";
 import { FormEvent, FormEventHandler, useState } from "react";
 import { eventService } from "@/services/eventServices";
+import { addAssistantToEvent } from "@/lib/actions";
 
 const Contador = ({
   label,
@@ -18,7 +19,7 @@ const Contador = ({
     const numberValue = Number(value) 
     if(typeof numberValue !== 'number') onChange({name, value: 0})
     const newValue = numberValue + increment
-    if(numberValue + increment < 0 || numberValue + increment > 99) onChange({name, value: 0})
+    if(numberValue + increment < 0 || numberValue + increment > 50) onChange({name, value: 0})
     else onChange({name, value: newValue})
   }
 
@@ -46,24 +47,25 @@ const Contador = ({
     name={name}
     type={type}
     min={0}
-    max={99}
+    max={50}
     value={value}
     onChange={(e) => onChange({name, value: e.target.value})}
     />
   <button type='button' onClick={() => changeAmount(1)} className="border-black dark:text-white text-xl rounded-full border dark:border-white h-8 w-8 hover:bg-white dark:hover:bg-black">+</button>
  {icon}
- <span>Total: ${getTotal()}</span>
+ {/* <span>Total: ${getTotal()}</span> */}
 </div>
 )}
 
 export default function Event({params}:{params:{slug:string}}){
-  const [eventFormData, setEventFormData] = useState({name:'', lastName:'', church: '', mail:'', phone: '', city:'', state:'', accompanying: 0, hosting: false})
+  const [eventFormData, setEventFormData] = useState({name:'', comeFrom: '', mail:'', phone: '', totalOfPeople: 0, message: 'Hola'})
   const [success, setSuccess] = useState(false)
   const onChangeData = ({name, value}:{name: string, value: string | number | boolean}) => setEventFormData({...eventFormData, [name]: value}) 
   const submit = async (e:Event | FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-     const response = await eventService.addAttendant(params.slug, {attendants: eventFormData})
-     if(response.status === 204) setSuccess(true)
+    console.log(document.querySelector('textarea')?.value as string, {...eventFormData, eventId: params.slug, message: document.querySelector('textarea')?.value})
+     const response = await addAssistantToEvent({...eventFormData, eventId: params.slug, message: document.querySelector('textarea')?.value})
+     console.log(response)
   }
   return (
     <div className="bg-vina-yellow-medium dark:bg-vina-blue-dark flex flex-col items-center min-h-screen">
@@ -72,22 +74,16 @@ export default function Event({params}:{params:{slug:string}}){
       { success ? <div className="dark:text-white"><h2 className="text-2xl">¡Gracias por registrate!</h2> <span>Nos pondremos en contacto contigo</span></div> :
       <form className="flex flex-col gap-4 w-full max-w-xl" onSubmit={(e) => submit(e)}>
         <Input type="text" label="Nombre" name="name" onChange={onChangeData} value={eventFormData.name}  />
-        <Input type="text" label="Apellidos" name="lastName" onChange={onChangeData} value={eventFormData.lastName}  />
-        <Input type="text" label="Iglesia" name="church" onChange={onChangeData} value={eventFormData.church}  />
-        <Input type="text" label="Estado" name="state" onChange={onChangeData} value={eventFormData.state}  />
-        <Input type="text" label="Ciudad" name="city" onChange={onChangeData} value={eventFormData.city}  />
+        <Input type="text" label="Lugar de donde nos visitan" name="comeFrom" onChange={onChangeData} value={eventFormData.comeFrom}  />
         <Input type="tel" label="Teléfono" name="phone" onChange={onChangeData} value={eventFormData.phone}  />
         <Input type="email" label="Correo Electrónico" name="mail" onChange={onChangeData} value={eventFormData.mail}  />
-        <Contador type="number" label="Acompañantes" name="accompanying" onChange={onChangeData} value={eventFormData.accompanying}  />
-        <label htmlFor="hosting" className="dark:text-white text-vina-blue-dark flex gap-12 items-center my-4">
-          <span>¿Requiere Hospedaje?</span>
-          <input type="checkbox" id="hosting" name="hosting"
-          checked={eventFormData.hosting}
-          onChange={(e) => onChangeData({name: 'hosting', value: e.target.checked})} />
-        </label>
+        <Contador type="number" label="Total de Personas" name="totalOfPeople" onChange={onChangeData} value={eventFormData.totalOfPeople}  />
+        <textarea className="bg-transparent text-white p-2 focus:ring-0 focus:outline-none active:outline-none" name="message" placeholder="Mensaje" />
         <Button type="submit" >Registrarse</Button>
       </form>
 }
     </div>
   )
 }
+
+//name, comeFrom, email, phone, totalOfPeople, message, eventId
