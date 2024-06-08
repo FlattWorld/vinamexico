@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import crosses from '@/public/crosses.jpg'
 import { Button } from '@/components'
+import Link from 'next/link';
 const BlogPost = ({
   post,
   extraStyles,
@@ -13,10 +14,11 @@ const BlogPost = ({
     time?: string;
     place?: string;
     date: string;
-    onClick: any
   };
   extraStyles?: string;
-}) => (
+}) => {
+  const click = () => {}
+  return(
   <li
     className={`w-full lg:w-1/2  xl:w-1/3 flex-shrink-0 flex flex-col items-center px-2 sm:px-32 lg:px-8 xl:px-4 ${extraStyles}`}
   >
@@ -33,9 +35,9 @@ const BlogPost = ({
       <p className="text-justify overflow-elipsis text-ellipsis max-h-36 leading-tight my-4">
         {post.description}
       </p>
-      {post.onClick && <Button onClick={post.onClick} >Ver más</Button> }
+      <Link href={`/eventos/${post._id}`} ><Button onClick={click} >Ver más</Button></Link>
     </div>
   </li>
-);
+);}
 
 export default BlogPost;

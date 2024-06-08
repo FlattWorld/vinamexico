@@ -7,15 +7,24 @@ import {
   MisionYVision,
   Valores,
 } from '@/components';
-
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import crossBg from '@/public/cross-bg.png';
 import { useRouter } from 'next/navigation'
+import { getEventsAction } from '@/lib/actions/eventActions';
 
 export default function Home() {
   const router = useRouter()
+  const [events, setEvents] = useState<any[]>([]);
 
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const response = await getEventsAction();
+      setEvents(response);
+    };
+    fetchEvents();
+  }, []);
   const eventos = [
     {
       id: 1,
@@ -55,7 +64,7 @@ export default function Home() {
           className="section flex-col pb-16 text-vina-yellow-dark"
         >
           <Carousel title="Próximos eventos" secondStep={16}>
-            {eventos.map((post:any) => (
+            {events.map((post:any) => (
               <EventPost post={post} key={post.id} extraStyles="" />
             ))}
           </Carousel>

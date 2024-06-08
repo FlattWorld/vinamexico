@@ -9,4 +9,6 @@ export type InputProps = {
   disabled?: boolean; 
   icon?: any;
   required?: boolean
+  max?: number
+  className?: string
 }

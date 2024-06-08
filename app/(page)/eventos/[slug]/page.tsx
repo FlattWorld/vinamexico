@@ -58,7 +58,7 @@ const Contador = ({
 )}
 
 export default function Event({params}:{params:{slug:string}}){
-  const [eventFormData, setEventFormData] = useState({name:'', comeFrom: '', mail:'', phone: '', totalOfPeople: 0, message: 'Hola'})
+  const [eventFormData, setEventFormData] = useState({name:'', comeFrom: '', mail:'', phone: '', totalOfPeople: 0, message: ''})
   const [success, setSuccess] = useState(false)
   const onChangeData = ({name, value}:{name: string, value: string | number | boolean}) => setEventFormData({...eventFormData, [name]: value}) 
   const submit = async (e:Event | FormEvent<HTMLFormElement>) => {

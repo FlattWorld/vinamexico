@@ -11,3 +11,7 @@ export async function addAssistantToEvent(data:any){
     return error
   }
 }
+
+export async function login(username:string, password:string) {
+ return username === 'eloy' && password === 'vinamexAdmin'
+}
