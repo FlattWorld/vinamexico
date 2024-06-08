@@ -68,16 +68,16 @@ export default function Events () {
   return (
     <div className="dark:bg-vina-blue-dark py-8 flex flex-col items-center min-h-screen gap-8">
       <h1 className="text-3xl text-center dark:text-vina-orange-medium">Eventos</h1>
+      <h2 className="text-xl text-center dark:text-vina-orange-medium">Crear Evento</h2>
       <DocumentUpload onChange={onChangeCreateEventForm} />
       <form action="" onSubmit={(e) => submit(e)} className="flex flex-wrap gap-2 gap-y-6 w-full justify-center md:px-16">
         <Input className="w-5/12" label="Titulo del Evento" name="title" type="text" value={createEventFormData.title} onChange={onChangeCreateEventForm} />
         <Input className="w-5/12" label="Descripcion" max={130} name="description" type="text" value={createEventFormData.description} onChange={onChangeCreateEventForm} />
         <Input className="w-5/12" label="Fecha" name="date" type="text" value={createEventFormData.date} onChange={onChangeCreateEventForm} />
         <Input className="w-5/12" label="Lugar" name="place" type="text" value={createEventFormData.place} onChange={onChangeCreateEventForm} />
-        <Button onClick={submit} className="w-60">Crear Evento</Button>
+        <Button onClick={submit} className="w-1/3">Crear Evento</Button>
       </form>
-      {JSON.stringify(createEventFormData)}
-      <h2 className="text-xl text-center dark:text-vina-orange-medium">Crear Evento</h2>
+      
       <h2 className="text-3xl text-center dark:text-vina-orange-medium">Eventos Existentes</h2>
       {/* {JSON.stringify(events)} */}
       <ul className="px-8 w-full flex flex-wrap mt-16">
@@ -138,8 +138,8 @@ export default function Events () {
         <button type="submit">Cargar</button>
       </form>
       {blob && (
-        <div>
-          Blob url: <a href={blob.url}>{blob.url}</a>
+        <div className="text-white">
+          Archivo Cargado con Éxito 
         </div>
       )}
     </>
