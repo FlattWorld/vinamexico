@@ -1,10 +1,11 @@
 'use client'
 import { eventService } from "@/services/eventServices"
 import Link from "next/link";
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { Button, Input } from "@/components";
 import { addEventAction, getEventsAction } from "@/lib/actions/eventActions";
 import {PencilSquareIcon} from '@heroicons/react/24/outline'
+import type { PutBlobResult } from '@vercel/blob';
 
 type Event = {
   _id: string;
@@ -21,6 +22,7 @@ export default function Events () {
     description: '',
     place: '',
     date: '',
+    pdfUrl: ''
   })
 
   const onChangeCreateEventForm = ({name, value}: {name:string, value: string | number}) => {
@@ -43,6 +45,7 @@ export default function Events () {
 
   const submit = async (e:any) => {
     e.preventDefault()
+    if(!createEventFormData.title || !createEventFormData.description || !createEventFormData.place || !createEventFormData.date || !createEventFormData.pdfUrl) return alert('Faltan campos por llenar o no se ha cargado PDF')
     try {
       const result:any = await addEventAction(createEventFormData)
       console.log(result)
@@ -53,6 +56,7 @@ export default function Events () {
           description: '',
           place: '',
           date: '',
+          pdfUrl: ''
         })
       }
     } catch (error) {
@@ -64,6 +68,7 @@ export default function Events () {
   return (
     <div className="dark:bg-vina-blue-dark py-8 flex flex-col items-center min-h-screen gap-8">
       <h1 className="text-3xl text-center dark:text-vina-orange-medium">Eventos</h1>
+      <DocumentUpload onChange={onChangeCreateEventForm} />
       <form action="" onSubmit={(e) => submit(e)} className="flex flex-wrap gap-2 gap-y-6 w-full justify-center md:px-16">
         <Input className="w-5/12" label="Titulo del Evento" name="title" type="text" value={createEventFormData.title} onChange={onChangeCreateEventForm} />
         <Input className="w-5/12" label="Descripcion" max={130} name="description" type="text" value={createEventFormData.description} onChange={onChangeCreateEventForm} />
@@ -71,6 +76,7 @@ export default function Events () {
         <Input className="w-5/12" label="Lugar" name="place" type="text" value={createEventFormData.place} onChange={onChangeCreateEventForm} />
         <Button onClick={submit} className="w-60">Crear Evento</Button>
       </form>
+      {JSON.stringify(createEventFormData)}
       <h2 className="text-xl text-center dark:text-vina-orange-medium">Crear Evento</h2>
       <h2 className="text-3xl text-center dark:text-vina-orange-medium">Eventos Existentes</h2>
       {/* {JSON.stringify(events)} */}
@@ -87,6 +93,55 @@ export default function Events () {
           </li>
         ))}
       </ul>
+      
     </div>
   )
+}
+
+ function DocumentUpload({onChange}: {onChange: any}){
+  const inputFileRef = useRef<HTMLInputElement>(null);
+  const [blob, setBlob] = useState<PutBlobResult | null>(null);
+  useEffect(() => {
+    if(blob && blob.url){
+      console.log('url file: ',blob.url)
+      onChange({name: 'pdfUrl', value: blob.url})
+    }
+  },[blob])
+  return (
+    <>
+      <h1 className="text-vina-blue-dark dark:text-white">Cargar PDF (Tamaño máximo 4MB)</h1>
+
+      <form className="text-vina-blue-dark dark:text-white"
+        onSubmit={async (event) => {
+          event.preventDefault();
+
+          if (!inputFileRef.current?.files) {
+            throw new Error("No file selected");
+          }
+
+          const file = inputFileRef.current.files[0];
+          console.log(file)
+          const response = await fetch(
+            `/api/pdf/upload?filename=${file.name}`,
+            {
+              method: 'POST',
+              body: file,
+            },
+          );
+
+          const newBlob = (await response.json()) as PutBlobResult;
+
+          setBlob(newBlob);
+        }}
+      >
+        <input className="mx-8 inline-block" name="file" ref={inputFileRef} type="file" required />
+        <button type="submit">Cargar</button>
+      </form>
+      {blob && (
+        <div>
+          Blob url: <a href={blob.url}>{blob.url}</a>
+        </div>
+      )}
+    </>
+  );
 }

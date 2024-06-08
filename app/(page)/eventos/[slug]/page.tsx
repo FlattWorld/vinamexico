@@ -1,9 +1,10 @@
 'use client'
 import { Input, Button } from "@/components";
 import { InputProps } from "@/types/componentTypes";
-import { FormEvent, FormEventHandler, useState } from "react";
+import { FormEvent, FormEventHandler, use, useEffect, useState } from "react";
 import { eventService } from "@/services/eventServices";
 import { addAssistantToEvent } from "@/lib/actions";
+import { getEventAction } from "@/lib/actions/eventActions";
 
 const Contador = ({
   label,
@@ -60,6 +61,16 @@ const Contador = ({
 export default function Event({params}:{params:{slug:string}}){
   const [eventFormData, setEventFormData] = useState({name:'', comeFrom: '', mail:'', phone: '', totalOfPeople: 0, message: ''})
   const [success, setSuccess] = useState(false)
+  const [event, setEvent] = useState<any>({title:'', description:'', place:'', date:'', pdfUrl:'' })
+  const getEvent = async () => {
+    const response = await getEventAction(params.slug)
+    console.log(response)
+    if(response) setEvent(response)
+  }
+  useEffect(() => {
+    getEvent()
+  }, []) 
+
   const onChangeData = ({name, value}:{name: string, value: string | number | boolean}) => setEventFormData({...eventFormData, [name]: value}) 
   const submit = async (e:Event | FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -67,9 +78,13 @@ export default function Event({params}:{params:{slug:string}}){
      if(response?.result?.acknowledged) setSuccess(true)
   }
   return (
-    <div className="bg-vina-yellow-medium dark:bg-vina-blue-dark flex flex-col items-center min-h-screen">
-      <iframe src="/evento1.pdf" width={'100%'} height={'500px'} />
-      <h1 className="text-3xl dark:text-white text-center mt-8 mb-12">¿Requieres Hospedaje?</h1>
+    <div className="bg-vina-yellow-medium dark:bg-vina-blue-dark flex flex-col items-center min-h-screen dark:text-white">
+      <iframe src={event.pdfUrl} width={'100%'} height={'500px'} />
+      <h1 className="text-3xl">{event.title}</h1>
+      <p>{event.description}</p>
+      <p>{event.place}</p>
+      <p>{event.date}</p>
+      <h2 className="text-3xl dark:text-white text-center mt-8 mb-12">¿Requieres Hospedaje?</h2>
       { success ? <div className="dark:text-white"><h2 className="text-2xl">¡Gracias por registrate!</h2> <span>Nos pondremos en contacto contigo</span></div> :
       <form className="flex flex-col gap-4 w-full max-w-xl" onSubmit={(e) => submit(e)}>
         <Input type="text" label="Nombre" name="name" onChange={onChangeData} value={eventFormData.name}  />
